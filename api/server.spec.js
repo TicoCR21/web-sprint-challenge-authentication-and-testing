@@ -50,6 +50,9 @@ describe( "server", () =>
 
         await( request( server ).post( "/api/auth/register" ).send( { username: "Tico2", password: "password" } ) );
         expect( await db( "users" ) ).toHaveLength( 2 );
+
+        await( request( server ).post( "/api/auth/register" ).send( { username: "Tico2", password: "password" } ) );
+        expect( await db( "users" ) ).not.toHaveLength( 3 );
       } );
 
       it( "Testing No Username Duplicates", async () => 
